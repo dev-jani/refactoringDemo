@@ -2,7 +2,7 @@ import {statement} from '../src/printUtils';
 
 const test = require('ava');
 
-test('', t => {
+test('statement. ', t => {
   const plays = {
     'hamlet': {
       'name': 'Hamlet',
