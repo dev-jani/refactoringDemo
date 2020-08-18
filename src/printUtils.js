@@ -10,7 +10,6 @@ const statement = (invoice, plays) => {
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
     let thisAmount = 0;
-
     switch (play.type) {
       case 'tragedy':
         thisAmount = 40000;
