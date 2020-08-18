@@ -103,7 +103,10 @@ test('statement case 5. Customer BigCo has one performance As You Like It and th
     'You earned 4 credits \n');
 });
 
-test('statement. ', t => {
+test('statement case 6. Customer BigCo has three performance. ' +
+  'Hamlet has 55 audiences. ' +
+  'As You Like Is has 35 audiences. ' +
+  'Othello has 40 audiences. ', t => {
 
   const invoice = {
     'customer': 'BigCo',
@@ -125,11 +128,10 @@ test('statement. ', t => {
 
   const result = statement(invoice, plays);
 
-  // "Statement for BigCo\n
-  // Hamlet: $650.00 (55 seats)\n
-  // As You Like It: $580.00 (35 seats)\n
-  // Othello: $500.00 (40 seats)\n
-  // Amount owed is $1,730.00\n
-  // You earned 47 credits \n"
-  t.is(result, 'Statement for BigCo\n Hamlet: $650.00 (55 seats)\n As You Like It: $580.00 (35 seats)\n Othello: $500.00 (40 seats)\nAmount owed is $1,730.00\nYou earned 47 credits \n');
+  t.is(result, 'Statement for BigCo\n' +
+    ' Hamlet: $650.00 (55 seats)\n' +
+    ' As You Like It: $580.00 (35 seats)\n' +
+    ' Othello: $500.00 (40 seats)\n' +
+    'Amount owed is $1,730.00\n' +
+    'You earned 47 credits \n');
 });
