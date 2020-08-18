@@ -46,6 +46,25 @@ test('statement case 2. Customer BigCo has one performance hamlet and the audien
     'You earned 0 credits \n');
 });
 
+test('statement case 3. Customer BigCo has one performance hamlet and the audience is 31. ', t => {
+  const invoice = {
+    'customer': 'BigCo',
+    'performances': [
+      {
+        'playID': 'hamlet',
+        'audience': 31,
+      },
+    ],
+  };
+
+  const result = statement(invoice, plays);
+
+  t.is(result, 'Statement for BigCo\n' +
+    ' Hamlet: $410.00 (31 seats)\n' +
+    'Amount owed is $410.00\n' +
+    'You earned 1 credits \n');
+});
+
 test('statement. ', t => {
 
   const invoice = {
