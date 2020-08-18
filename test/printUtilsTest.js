@@ -135,3 +135,29 @@ test('statement case 6. Customer BigCo has three performances. ' +
     'Amount owed is $1,730.00\n' +
     'You earned 47 credits \n');
 });
+
+test('statement case 7. Customer BigCo has one unknown performance. ', t => {
+  const plays = {
+    'othello': {
+      'name': 'Othello',
+      'type': 'tragedy1',
+    },
+  };
+  const invoice = {
+    'customer': 'BigCo',
+    'performances': [
+      {
+        'playID': 'othello',
+        'audience': 40,
+      },
+    ],
+  };
+
+  try {
+    const result = statement(invoice, plays);
+    t.fail();
+  }
+  catch (e) {
+    t.is(e.message, 'unknown type: tragedy1');
+  }
+});
