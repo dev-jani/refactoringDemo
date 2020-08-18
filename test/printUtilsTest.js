@@ -103,7 +103,7 @@ test('statement case 5. Customer BigCo has one performance As You Like It and th
     'You earned 4 credits \n');
 });
 
-test('statement case 6. Customer BigCo has three performance. ' +
+test('statement case 6. Customer BigCo has three performances. ' +
   'Hamlet has 55 audiences. ' +
   'As You Like Is has 35 audiences. ' +
   'Othello has 40 audiences. ', t => {
