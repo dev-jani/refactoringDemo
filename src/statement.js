@@ -1,4 +1,4 @@
-const statementDataCreator = require('./statementDataCreator');
+const {createStatementData} = require('./statementDataCreator');
 
 function renderPlainText (data) {
   let result = `Statement for ${data.customer}\n`;
@@ -19,7 +19,7 @@ function renderPlainText (data) {
 }
 
 function statement (invoice, plays) {
-  return renderPlainText(statementDataCreator.createStatementData(invoice, plays));
+  return renderPlainText(createStatementData(invoice, plays));
 }
 
 module.exports = {
