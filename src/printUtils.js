@@ -5,7 +5,6 @@ function renderPlainText (data) {
   }
   result += `Amount owed is ${usd(data.totalAmount)}\n`;
   result += `You earned ${(data.totalVolumeCredits)} credits \n`;
-
   return result;
 
   function usd (aNumber) {
@@ -17,13 +16,13 @@ function renderPlainText (data) {
   }
 }
 
-function statement (invoice, plays) {
+function createStatementData (invoice, plays) {
   const statementData = {};
   statementData.customer = invoice.customer;
   statementData.performances = invoice.performances.map(enrichPerformance);
   statementData.totalAmount = totalAmount(statementData);
   statementData.totalVolumeCredits = totalVolumeCredits(statementData);
-  return renderPlainText(statementData);
+  return statementData;
 
   function enrichPerformance (aPerformance) {
     const result = Object.assign({}, aPerformance);
@@ -74,6 +73,10 @@ function statement (invoice, plays) {
   function playFor (aPerformance) {
     return plays[aPerformance.playID];
   }
+}
+
+function statement (invoice, plays) {
+  return renderPlainText(createStatementData(invoice, plays));
 }
 
 module.exports = {
