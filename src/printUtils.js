@@ -63,8 +63,8 @@ function statement (invoice, plays) {
         throw new Error(`unknown type: ${playFor(aPerformance).type}`);
     }
     return result;
-  };
-};
+  }
+}
 
 module.exports = {
   statement,
