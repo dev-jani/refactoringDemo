@@ -1,8 +1,5 @@
 const test = require('ava');
-import {
-  htmlStatement,
-  statement,
-} from '../src/statement';
+const {htmlStatement, statement} = require('../src/statement');
 
 const plays = {
   'hamlet': {
