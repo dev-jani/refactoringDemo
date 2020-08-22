@@ -28,23 +28,30 @@ function usd (thisAmount) {
   }).format(thisAmount / 100);
 }
 
-const statement = (invoice, plays) => {
-  let totalAmount = 0;
+function volumeCreditsFor (invoice, plays) {
   let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
-    const thisAmount = amountFor(play, perf);
     // add volume credits
     volumeCredits += Math.max(perf.audience - 30, 0);
     // add extra credit for every ten comedy attendees
     if ('comedy' === play.type) volumeCredits += Math.floor(perf.audience / 5);
+  }
+  return volumeCredits;
+}
+
+const statement = (invoice, plays) => {
+  let totalAmount = 0;
+  let result = `Statement for ${invoice.customer}\n`;
+  for (let perf of invoice.performances) {
+    const play = plays[perf.playID];
+    const thisAmount = amountFor(play, perf);
     //print line for this order
     result += ` ${play.name}: ${(usd(thisAmount))} (${perf.audience} seats)\n`;
     totalAmount += thisAmount;
   }
   result += `Amount owed is ${usd(totalAmount)}\n`;
-  result += `You earned ${volumeCredits} credits \n`;
+  result += `You earned ${(volumeCreditsFor(invoice, plays))} credits \n`;
   return result;
 };
 
