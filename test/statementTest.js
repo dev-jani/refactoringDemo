@@ -1,5 +1,5 @@
 const test = require('ava');
-import {statement} from '../src/printUtils';
+const {statement} = require('../src/statement');
 
 const plays = {
   'hamlet': {
@@ -154,7 +154,7 @@ test('statement case 7. Customer BigCo has one unknown performance. ', t => {
   };
 
   try {
-    const result = statement(invoice, plays);
+    statement(invoice, plays);
     t.fail();
   }
   catch (e) {
