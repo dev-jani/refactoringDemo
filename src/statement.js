@@ -52,31 +52,27 @@ function playFor (plays, perf) {
 }
 
 function createStatementData (invoice, plays) {
-  let customer = invoice.customer;
-  const performances = invoice.performances.map(function (aPerformance) {
+  const result = {};
+  result.customer = invoice.customer;
+  result.performances = invoice.performances.map(function (aPerformance) {
     const result = Object.assign({}, aPerformance);
     result.play = playFor(plays, result);
     return result;
   });
-  let totalAmount2 = totalAmount(invoice, plays);
-  let totalVolumeCredits = volumeCreditsFor(invoice, plays);
-  return {
-    customer,
-    performances,
-    totalAmount2,
-    totalVolumeCredits,
-  };
+  result.totalAmount = totalAmount(invoice, plays);
+  result.totalVolumeCredits = volumeCreditsFor(invoice, plays);
+  return result;
 }
 
 const statement = (invoice, plays) => {
-  let {customer, performances, totalAmount2, totalVolumeCredits} = createStatementData(invoice, plays);
-  let result = `Statement for ${customer}\n`;
-  for (let perf of performances) {
+  let data = createStatementData(invoice, plays);
+  let result = `Statement for ${data.customer}\n`;
+  for (let perf of data.performances) {
     //print line for this order
     result += ` ${perf.play.name}: ${(usd(amountFor(perf.play, perf)))} (${perf.audience} seats)\n`;
   }
-  result += `Amount owed is ${usd(totalAmount2)}\n`;
-  result += `You earned ${totalVolumeCredits} credits \n`;
+  result += `Amount owed is ${usd(data.totalAmount)}\n`;
+  result += `You earned ${data.totalVolumeCredits} credits \n`;
   return result;
 };
 
