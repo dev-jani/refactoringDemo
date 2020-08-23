@@ -64,16 +64,18 @@ function createStatementData (invoice, plays) {
   return result;
 }
 
-const statement = (invoice, plays) => {
-  let data = createStatementData(invoice, plays);
+function renderPlainText (data) {
   let result = `Statement for ${data.customer}\n`;
   for (let perf of data.performances) {
-    //print line for this order
     result += ` ${perf.play.name}: ${(usd(amountFor(perf.play, perf)))} (${perf.audience} seats)\n`;
   }
   result += `Amount owed is ${usd(data.totalAmount)}\n`;
   result += `You earned ${data.totalVolumeCredits} credits \n`;
   return result;
+}
+
+const statement = (invoice, plays) => {
+  return renderPlainText(createStatementData(invoice, plays));
 };
 
 module.exports = {
