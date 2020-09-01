@@ -16,14 +16,8 @@ class Rating {
     }
   }
 
-  get voyageProfitFactor () {
-    let result = 2;
-    if (this._voyage.zone === 'china') {
-      result += 1;
-    }
-    if (this._voyage.zone === 'east-indies') {
-      result += 1;
-    }
+  get voyageAndHistoryLengthFactor () {
+    let result = 0;
     if (this._voyage.zone === 'china' && this.hasChinaHistory) {
       result += 3;
       if (this._history.length > 10) {
@@ -44,6 +38,18 @@ class Rating {
         result -= 1;
       }
     }
+    return result;
+  }
+
+  get voyageProfitFactor () {
+    let result = 2;
+    if (this._voyage.zone === 'china') {
+      result += 1;
+    }
+    if (this._voyage.zone === 'east-indies') {
+      result += 1;
+    }
+    result += this.voyageAndHistoryLengthFactor;
     return result;
   }
 
