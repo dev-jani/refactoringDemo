@@ -23,3 +23,9 @@ class Employee {
     return `${this._name} (${this.type})`;
   }
 }
+
+class Engineer extends Employee {
+  get type () {
+    return 'engineer';
+  }
+}
