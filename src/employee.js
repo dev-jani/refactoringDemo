@@ -29,3 +29,7 @@ class Engineer extends Employee {
     return 'engineer';
   }
 }
+
+function createEmployee (name, type) {
+  return new Employee(name, type);
+}
