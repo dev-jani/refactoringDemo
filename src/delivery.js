@@ -18,24 +18,25 @@ function rushDeliveryDate (anOrder) {
   return anOrder.placedOn.plusDays(1 + rushDeliveryTimeFor(anOrder));
 }
 
-function regularDeliveryDate (anOrder) {
-  let deliveryTime;
+function regularDeliveryTimeFor (anOrder) {
   if ([
     'MA',
     'CT',
     'NY',
   ].includes(anOrder.deliveryState)) {
-    deliveryTime = 2;
+    return 2;
   }
-  else if ([
+  if ([
     'ME',
     'NH',
   ].includes(anOrder.deliveryState)) {
-    deliveryTime = 3;
+    return 3;
   }
-  else {
-    deliveryTime = 4;
-  }
+  return 4;
+}
+
+function regularDeliveryDate (anOrder) {
+  let deliveryTime = regularDeliveryTimeFor(anOrder);
   return anOrder.placedOn.plusDays(2 + deliveryTime);
 }
 
