@@ -11,11 +11,7 @@ function printDetails (invoice, outstanding) {
 }
 
 function calculateOutstanding (invoice) {
-  let outstanding = 0;
-  for (const o of invoice.borderSpacing) {
-    outstanding += o.amount;
-  }
-  return outstanding;
+  return invoice.borderSpacing.reduce((total, o) => total + o.amount, 0);
 }
 
 function recordDueDate (invoice) {
