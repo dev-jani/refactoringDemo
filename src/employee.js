@@ -5,6 +5,10 @@ class Employee {
     this._type = type;
   }
 
+  get type () {
+    return this._type;
+  }
+
   validateType (type) {
     if (![
       'engineer',
@@ -16,6 +20,6 @@ class Employee {
   }
 
   toString () {
-    return `${this._name} (${this._type})`;
+    return `${this._name} (${this.type})`;
   }
 }
