@@ -1,17 +1,14 @@
 function rushDeliveryTimeFor (deliveryState) {
-  if ([
-    'MA',
-    'CT',
-  ].includes(deliveryState)) {
-    return 2;
+  switch (deliveryState) {
+    case 'MA':
+    case 'CT':
+      return 2;
+    case 'NY':
+    case 'NH':
+      return 3;
+    default:
+      return 4;
   }
-  if ([
-    'NY',
-    'NH',
-  ].includes(deliveryState)) {
-    return 3;
-  }
-  return 4;
 }
 
 function rushDeliveryDate (anOrder) {
@@ -19,20 +16,17 @@ function rushDeliveryDate (anOrder) {
 }
 
 function regularDeliveryTimeFor (deliveryState) {
-  if ([
-    'MA',
-    'CT',
-    'NY',
-  ].includes(deliveryState)) {
-    return 4;
+  switch (deliveryState) {
+    case 'MA':
+    case 'CT':
+    case 'NY':
+      return 4;
+    case 'ME':
+    case 'NH':
+      return 5;
+    default:
+      return 6;
   }
-  if ([
-    'ME',
-    'NH',
-  ].includes(deliveryState)) {
-    return 5;
-  }
-  return 6;
 }
 
 function regularDeliveryDate (anOrder) {
