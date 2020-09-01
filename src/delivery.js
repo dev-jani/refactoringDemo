@@ -41,3 +41,9 @@ function deliveryDate (anOrder, isRush) {
     return regularDeliveryDate(anOrder);
   }
 }
+
+// remove function deliveryDate
+// use rushDeliveryDate or regularDeliveryDate
+// for example:
+// deliveryDate(anOrder, true); => rushDeliveryDate(anOrder)
+// deliveryDate(anOrder, false); => regularDeliveryDate(anOrder)
