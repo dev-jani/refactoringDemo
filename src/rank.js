@@ -93,7 +93,7 @@ function createRating (voyage, history) {
 }
 
 function rating (voyage, history) {
-  return new Rating(voyage, history).value;
+  return createRating(voyage, history).value;
 }
 
 module.exports = {};
