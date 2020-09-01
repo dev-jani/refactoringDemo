@@ -3,19 +3,19 @@ function rushDeliveryTimeFor (anOrder) {
     'MA',
     'CT',
   ].includes(anOrder.deliveryState)) {
-    return 1;
+    return 2;
   }
   if ([
     'NY',
     'NH',
   ].includes(anOrder.deliveryState)) {
-    return 2;
+    return 3;
   }
-  return 3;
+  return 4;
 }
 
 function rushDeliveryDate (anOrder) {
-  return anOrder.placedOn.plusDays(1 + rushDeliveryTimeFor(anOrder));
+  return anOrder.placedOn.plusDays(rushDeliveryTimeFor(anOrder));
 }
 
 function regularDeliveryTimeFor (anOrder) {
@@ -24,19 +24,19 @@ function regularDeliveryTimeFor (anOrder) {
     'CT',
     'NY',
   ].includes(anOrder.deliveryState)) {
-    return 2;
+    return 4;
   }
   if ([
     'ME',
     'NH',
   ].includes(anOrder.deliveryState)) {
-    return 3;
+    return 5;
   }
-  return 4;
+  return 6;
 }
 
 function regularDeliveryDate (anOrder) {
-  return anOrder.placedOn.plusDays(2 + regularDeliveryTimeFor(anOrder));
+  return anOrder.placedOn.plusDays(regularDeliveryTimeFor(anOrder));
 }
 
 function deliveryDate (anOrder, isRush) {
