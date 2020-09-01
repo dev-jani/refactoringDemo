@@ -15,8 +15,7 @@ function rushDeliveryTimeFor (anOrder) {
 }
 
 function rushDeliveryDate (anOrder) {
-  let deliveryTime = rushDeliveryTimeFor(anOrder);
-  return anOrder.placedOn.plusDays(1 + deliveryTime);
+  return anOrder.placedOn.plusDays(1 + rushDeliveryTimeFor(anOrder));
 }
 
 function regularDeliveryDate (anOrder) {
