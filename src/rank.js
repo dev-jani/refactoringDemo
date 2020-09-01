@@ -18,13 +18,15 @@ class Rating {
 
   get voyageAndHistoryLengthFactor () {
     let result = 0;
-    if (this._history.length > 8) {
-      result += 1;
-    }
+    result += this.historyLengthFactor();
     if (this._voyage.length > 14) {
       result -= 1;
     }
     return result;
+  }
+
+  historyLengthFactor () {
+    return this._history.length > 8 ? 1 : 0;
   }
 
   get voyageProfitFactor () {
@@ -77,11 +79,13 @@ class ExperiencedChinaRating extends Rating {
     return Math.max(result, 0);
   }
 
+  historyLengthFactor () {
+    return this._history.length > 10 ? 1 : 0;
+  }
+
   get voyageAndHistoryLengthFactor () {
     let result = 3;
-    if (this._history.length > 10) {
-      result += 1;
-    }
+    result += this.historyLengthFactor;
     if (this._voyage.length > 12) {
       result += 1;
     }
