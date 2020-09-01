@@ -24,7 +24,7 @@ class Rating {
     if (this._voyage.zone === 'east-indies') {
       result += 1;
     }
-    if (this._voyage.zone === 'china' && this.hasChina) {
+    if (this._voyage.zone === 'china' && this.hasChinaHistory) {
       result += 3;
       if (this._history.length > 10) {
         result += 1;
@@ -70,13 +70,13 @@ class Rating {
       result += 4;
     }
     result += this._history.filter(v => v.profit < 0).length;
-    if (this._voyage.zone === 'china' && this.hasChina) {
+    if (this._voyage.zone === 'china' && this.hasChinaHistory) {
       result -= 2;
     }
     return Math.max(result, 0);
   }
 
-  get hasChina () {
+  get hasChinaHistory () {
     return this._history.some(v => 'china' === v.zone);
   }
 
