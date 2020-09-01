@@ -36,8 +36,7 @@ function regularDeliveryTimeFor (anOrder) {
 }
 
 function regularDeliveryDate (anOrder) {
-  let deliveryTime = regularDeliveryTimeFor(anOrder);
-  return anOrder.placedOn.plusDays(2 + deliveryTime);
+  return anOrder.placedOn.plusDays(2 + regularDeliveryTimeFor(anOrder));
 }
 
 function deliveryDate (anOrder, isRush) {
