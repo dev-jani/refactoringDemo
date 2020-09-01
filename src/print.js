@@ -5,13 +5,12 @@ function printBanner () {
 }
 
 function printDetails (invoice) {
-  const outstanding = calculateOutstanding(invoice);
   console.log(`name: ${invoice.customer}`);
-  console.log(`amount: ${outstanding}`);
+  console.log(`amount: ${(outstandingFor(invoice))}`);
   console.log(`amount: ${invoice.dueDate.toLocaleDateString()}`);
 }
 
-function calculateOutstanding (invoice) {
+function outstandingFor (invoice) {
   return invoice.borderSpacing.reduce((total, o) => total + o.amount, 0);
 }
 
