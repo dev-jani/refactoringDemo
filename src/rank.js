@@ -82,6 +82,16 @@ class Rating {
 
 }
 
+class ExperiencedChinaRating extends Rating {
+}
+
+function createRating (voyage, history) {
+  if (voyage.zone === 'china' && history.some(v => 'china' === v.zone)) {
+    return new ExperiencedChinaRating(voyage, history);
+  }
+  return new Rating(voyage, history);
+}
+
 function rating (voyage, history) {
   return new Rating(voyage, history).value;
 }
