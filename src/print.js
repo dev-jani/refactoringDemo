@@ -18,14 +18,17 @@ function calculateOutstanding (invoice) {
   return outstanding;
 }
 
+function recordDueDate (invoice) {
+  const today = new Date();
+  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+}
+
 function printOwing (invoice) {
   printBanner();
 
   const outstanding = calculateOutstanding(invoice);
 
-  // record due date
-  const today = new Date();
-  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+  recordDueDate(invoice);
 
   printDetails(invoice, outstanding);
 }
