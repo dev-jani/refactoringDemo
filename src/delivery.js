@@ -1,42 +1,42 @@
-function rushDeliveryTimeFor (anOrder) {
+function rushDeliveryTimeFor (deliveryState) {
   if ([
     'MA',
     'CT',
-  ].includes(anOrder.deliveryState)) {
+  ].includes(deliveryState)) {
     return 2;
   }
   if ([
     'NY',
     'NH',
-  ].includes(anOrder.deliveryState)) {
+  ].includes(deliveryState)) {
     return 3;
   }
   return 4;
 }
 
 function rushDeliveryDate (anOrder) {
-  return anOrder.placedOn.plusDays(rushDeliveryTimeFor(anOrder));
+  return anOrder.placedOn.plusDays(rushDeliveryTimeFor(anOrder.deliveryState));
 }
 
-function regularDeliveryTimeFor (anOrder) {
+function regularDeliveryTimeFor (deliveryState) {
   if ([
     'MA',
     'CT',
     'NY',
-  ].includes(anOrder.deliveryState)) {
+  ].includes(deliveryState)) {
     return 4;
   }
   if ([
     'ME',
     'NH',
-  ].includes(anOrder.deliveryState)) {
+  ].includes(deliveryState)) {
     return 5;
   }
   return 6;
 }
 
 function regularDeliveryDate (anOrder) {
-  return anOrder.placedOn.plusDays(regularDeliveryTimeFor(anOrder));
+  return anOrder.placedOn.plusDays(regularDeliveryTimeFor(anOrder.deliveryState));
 }
 
 function deliveryDate (anOrder, isRush) {
